@@ -53,7 +53,8 @@ class WebSocketLocust(Locust):
 class UserBehavior(TaskSet):
     def on_start(self):
         print('--------- task start ------------')
-        self.url = "ws://202.153.5.186:9200?type=app"
+        # self.url = "ws://202.153.5.186:9200?type=app"
+        self.url = "ws://echo.websocket.org:80"
 
     def on_stop(self):
         print('---------- task stop ------------')
@@ -66,8 +67,8 @@ class UserBehavior(TaskSet):
 
 class WebsiteUser(WebSocketLocust):
     task_set = UserBehavior
-    min_wait = 10000
-    max_wait = 20000
+    min_wait = 5000
+    max_wait = 9000
 
 if __name__ == '__main__':
     os.system("locust -f webs_client.py --host=202.153.5.186")

@@ -1,0 +1,19 @@
+yum install -y docker :安装docker
+docker search mysql:搜索mysql镜像文件（docker hub）
+docker pull mysql:5.5.0：下载mysql5.5.0版本的镜像文件，如果不加版本号，默认下载最新的版本
+docker images：查看已下载的镜像文件
+docker rmi +image id 删除镜像
+docker rmi -f +image id 强制删除镜像
+docker run --name mytomcat -d tomcat:latest：运行指定的镜像文件，产生容器，--name：定义容器名称，-d:表示后台运行
+docke ps: 常看当前运行中的容器
+docker stop +names或者容器ID：停止运行中的容器
+docker ps -a:查看所有的容器，包括运行的和已停止的
+docker start +容器id ：启动容器
+docker rm +容器id或name：删除已停止的容器
+docker run -d -p 8978:8080 tomcat ：-p将主机的端口映射到容器的端口
+docket logs +容器名称/容器id：查看容器日志
+
+
+
+
+

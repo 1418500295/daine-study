@@ -1,29 +1,25 @@
 from socket import *
 from time import ctime
 
-HOST = '127.0.0.1'
-PORT = 21567
-BUFSIZ = 1024
-ADDR = (HOST,PORT)
-
-tcpSerSock = socket(AF_INET,SOCK_STREAM)
-tcpSerSock.bind(ADDR)
-tcpSerSock.listen(5)
-
+s_socket = socket(AF_INET, SOCK_STREAM)
+host = ("127.0.0.1", 4526)
+# 将主机与端口绑定到套接字
+s_socket.bind(host)
+# 设置并启动tcp监听器
+s_socket.listen(5)
 while True:
-    print('waiting for connection...')
-    tcpCliSock, addr = tcpSerSock.accept()
-    print('...connnecting from:', addr)
-
+    print("等待连接中...")
+    # 被动接受tcp连接
+    coon, addr = s_socket.accept()
+    print("连接到达",addr)
     while True:
-        data = tcpCliSock.recv(BUFSIZ)
-        print("客户端发来的消息是", data)
+        data = coon.recv(1024)
+        print("服务端收到的消息是",data)
         if not data:
             break
-        #tcpCliSock.send('[%s] %s' %(bytes(ctime(),'utf-8'),data))
-        tcpCliSock.send(('[%s] %s' % (ctime(), data)).encode())
-    tcpCliSock.close()
-tcpSerSock.close()
+        message = input("服务端发送的消息是>>")
+        coon.send(bytes(message, "utf-8"))
+
 
 
 

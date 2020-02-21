@@ -1,0 +1,114 @@
+[
+  {
+    "description": "这是一个json格式的get请求",
+    "request": {
+      "uri": "/v1/getFirst",
+      "method": "get",
+      "json": {
+        "height": "185",
+        "weight": "174"
+      }
+    },
+    "response": {
+      "text": "这是个json格式的get请求",
+      "status": "200"
+    }
+  },
+  {
+    "description": "这是一个get请求",
+    "request": {
+      "uri": "/v1/getDemo",
+      "method": "get",
+      "queries": {
+        "name": "daine",
+        "age": "26"
+      }
+    },
+    "response": {
+      "json": {
+        "info": "success",
+        "status": "200"
+      }
+    }
+  },
+  {
+    "description":"这是一个带参数get请求",
+    "request":{
+      "uri":"/getwithparam",
+      "method":"get",
+      "queries":{
+        "name":"huhansan",
+        "age": "10"
+      }
+    },
+    "response": {
+      "text":"我胡汉三又回来啦！！！！"
+    }
+
+  },
+  {
+    "description":"这是一个带cookies信息的get请求",
+    "request":{
+      "uri":"/get/with/cookies",
+      "method":"get",
+      "cookies":{
+        "login":"true"
+      }
+    },
+    "response":{
+      "text":"这是一个需要携带cookies信息才能访问的get请求"
+    }
+  },
+  {
+    "description":"这是一个会返回cookies信息的get请求",
+    "request":{
+      "uri":"/getCookies",
+      "method":"get"
+    },
+    "response":{
+      "cookies":{
+        "login":"true"
+      },
+      "text":"恭喜你获得cookies信息成功"
+    }
+
+
+  },
+  {
+    "description": "这是一个post请求",
+    "request": {
+      "uri": "/postDemo",
+      "method": "post",
+      "json": {
+        "name": "james",
+        "age": "23"
+      }
+    },
+    "response": {
+      "text": "我是daine",
+      "status": "200"
+
+    }
+
+  },
+  {
+    "description": "这是一个表单格式的请求",
+    "request": {
+      "uri": "/postSecond",
+      "method": "post",
+      "forms": {
+        "name": "daine",
+        "sex": "male"
+      }
+    },
+    "response": {
+      "json": {
+        "success": 1,
+        "msg": "成功"
+      }
+    }
+  }
+
+
+
+]

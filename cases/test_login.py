@@ -14,9 +14,12 @@ import requests,json
 
 url = "http://localhost:8889/get/with/cookies"
 
-headers = {
-    "Cookie": "login=true;base=localhost"
+data = {
+    "name": "daine",
+    "age": "26"
 }
 
-result = requests.get(url,headers=headers)
+result = requests.get(url,params=data)
 print(result.text)
+
+

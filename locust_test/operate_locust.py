@@ -53,6 +53,7 @@ class UserBehavior(TaskSet):
     #     print(response.json())
 
 
+
 class User(HttpLocust):
     task_set = UserBehavior
     min_wait = 1000

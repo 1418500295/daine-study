@@ -4,13 +4,16 @@ import json
 class RunCase(unittest.TestCase):
 
     def test_01(self):
-        url = "http://localhost:8889/v1/getFirst"
-        data = {
-            "height": "185",
-            "weight": "174"
+        url = "http://localhost:8889/postDemo"
+        headers = {
+            "content-type": "application/json"
         }
-        result = requests.get(url=url,params=json.dumps(data))
-        print(result)
+        data = {
+            "name": "james",
+            "age": "23"
+        }
+        response = requests.post(url=url, data=json.dumps(data), headers=headers)
+        print(response.text)
 
 if __name__ == '__main__':
     unittest.main()

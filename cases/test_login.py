@@ -12,14 +12,14 @@ import requests,json
 # if __name__ == '__main__':
 #     pytest.main()
 
-url = "http://localhost:8889/get/with/cookies"
+# url = "http://localhost:8889/v1/getDemo"
+#
+# data = {
+#     "name": "daine",
+#     "age": "26"
+# }
+# result = requests.get(url=url,params=data)
+# print(result.json())
 
-data = {
-    "name": "daine",
-    "age": "26"
-}
-
-result = requests.get(url,params=data)
-print(result.text)
-
-
+a= ["a", "哈哈", "dsa"]
+print(":".join(a))

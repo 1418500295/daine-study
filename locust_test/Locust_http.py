@@ -23,4 +23,4 @@ class user(HttpLocust):
     max_wait = 3000
 
 if __name__ == '__main__':
-    os.system("locust -f Locust_http --host=localhost")
+    os.system("locust -f Locust_http.py --host=localhost --no-web -c 10000 -r 50 --run-time 60")

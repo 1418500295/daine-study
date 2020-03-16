@@ -86,13 +86,19 @@ file_name = file_path + image_name + '.png'
 driver.save_screenshot(file_name)
 """
 
+import yaml
+import _json
+
+print(os.path.abspath(__file__))
+print(os.path.realpath(__file__))
+print(os.path.join(os.path.dirname(os.path.realpath(__file__)),"demo.py"))
+print(os.path.split(os.path.realpath(__file__)))
 
 
-
-
-
-
-
+a = {
+    "name": "daine",
+    "age": 12
+}
 
 
 

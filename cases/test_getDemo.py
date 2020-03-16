@@ -13,7 +13,7 @@ class RunCase(unittest.TestCase):
             "age": "23"
         }
         response = requests.post(url=url, data=json.dumps(data), headers=headers)
-        print(response.text)
+        print(response)
 
 if __name__ == '__main__':
     unittest.main()

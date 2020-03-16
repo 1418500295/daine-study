@@ -1,3 +1,5 @@
+import os
+
 import pytest
 import requests,json
 
@@ -12,14 +14,19 @@ import requests,json
 # if __name__ == '__main__':
 #     pytest.main()
 
-# url = "http://localhost:8889/v1/getDemo"
-#
-# data = {
-#     "name": "daine",
-#     "age": "26"
-# }
-# result = requests.get(url=url,params=data)
-# print(result.json())
+url = "http://localhost:8889/v1/getDemo"
 
-a= ["a", "哈哈", "dsa"]
-print(":".join(a))
+data = {
+    "name": "daine",
+    "age": "26"
+}
+res = requests.get(url,data)
+
+print(os.path.dirname(os.getcwd()))
+
+
+
+
+
+
+

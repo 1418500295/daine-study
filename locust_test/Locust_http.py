@@ -6,16 +6,14 @@ class UserBehavior(TaskSet):
 
     @task
     def getCookie(self):
-        url = "http://localhost:8889/postDemo"
-        headers = {
-            "content-type": "application/json"
-        }
+        url = "http://localhost:8889/v1/getDemo"
+
         data = {
-            "name": "james",
-            "age": "23"
+            "name": "daine",
+            "age": "26"
         }
-        response = self.client.post(url=url,data=json.dumps(data),headers=headers)
-        print(response.text)
+        response = self.client.get(url,params=data).json()
+        print(response)
 
 class user(HttpLocust):
     task_set = UserBehavior
@@ -23,4 +21,5 @@ class user(HttpLocust):
     max_wait = 3000
 
 if __name__ == '__main__':
-    os.system("locust -f Locust_http.py --host=localhost --no-web -c 10000 -r 50 --run-time 60")
+    # os.system("locust -f Locust_http.py --host=localhost --no-web -c 100 -r 20")
+    os.system("locust -f Locust_http.py --host=localhost")

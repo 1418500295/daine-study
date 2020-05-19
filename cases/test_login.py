@@ -21,8 +21,12 @@ data = {
     "age": "26"
 }
 res = requests.get(url,data)
+sr = res.json()
+print(res.json())
 
-print(os.path.dirname(os.getcwd()))
+# print(os.path.dirname(os.getcwd()))
+# import os
+# os.system("pause")
 
 
 

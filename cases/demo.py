@@ -25,6 +25,8 @@ import requests
 # from selenium.webdriver.common.action_chains import ActionChains
 # from selenium.webdriver.support.select import Select
 # from selenium.webdriver.common.keys import Keys
+# from selenium import webdriver
+#
 # path = r"C:\Users\ASUS\PycharmProjects\daine-study\chromedriver.exe"
 # driver = webdriver.Chrome(path)
 # # driver.get("https://g.58.com/")
@@ -88,17 +90,46 @@ driver.save_screenshot(file_name)
 
 import yaml
 import _json
+from enum import Enum
+# import threading
+# class RunAll():
+#     def run(self,num):
+#         for i in range(num):
+#             time.sleep(1)
+#             print("在跑步")
+#
+#     def sing(self,num):
+#          for i in range(num):
+#             time.sleep(1)
+#             print("在唱歌")
+#
+# if __name__ == '__main__':
+#     t_run = threading.Thread(target=RunAll().run,args=(10,))
+#     t_run.start()
+#     t_sing = threading.Thread(target=RunAll().sing,args=(4,))
+#     t_sing.start()
 
-print(os.path.abspath(__file__))
-print(os.path.realpath(__file__))
-print(os.path.join(os.path.dirname(os.path.realpath(__file__)),"demo.py"))
-print(os.path.split(os.path.realpath(__file__)))
+import threading
+# with open("daine.txt","r",encoding='utf-8')as f:
+#     data = f.readline()
+#     while data:
+#         data = f.readline()
+#         print(data)
+
+from enum import Enum
+
+class Demo(Enum):
+    name = "daine"
+    age = 12
+
+if __name__ == '__main__':
+
+    print(Demo.name.value)
 
 
-a = {
-    "name": "daine",
-    "age": 12
-}
+
+
+
 
 
 

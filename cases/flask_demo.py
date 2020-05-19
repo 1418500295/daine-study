@@ -51,8 +51,22 @@ def post_main():
     # 将结果转换为json格式
     return jsonify(json_data)
 
-def post_json_data():
-    request
+@app.route("/jsondata",methods=["POST"])
+def json_post():
+    name = request.json.get("name")
+    salary = request.json.get("salary")
+    response = {
+        "success":1,
+        "msg": "成功"
+    }
+    return jsonify(response)
+
+@app.route("/setCookie",methods=["GET"])
+def set_cookie():
+    resp = make_response("设置cookie")
+    resp.set_cookie("login","true")
+    return resp
+
 
 
 if __name__ == '__main__':

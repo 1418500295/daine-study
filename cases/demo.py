@@ -116,15 +116,45 @@ import threading
 #         data = f.readline()
 #         print(data)
 
-from enum import Enum
+# from enum import Enum
+#
+# class Demo(Enum):
+#     name = "daine"
+#     age = 12
+#
+# if __name__ == '__main__':
+#
+#     print(Demo.name.value)
 
-class Demo(Enum):
-    name = "daine"
-    age = 12
+data = {
+    "name":"daine",
+    "age":"26"
+}
+import httpx,asyncio
 
-if __name__ == '__main__':
+resp = httpx.get("http://localhost:8889/v1/getDemo",params=data)
+print(resp.json())
 
-    print(Demo.name.value)
+a = {
+    "name":"james",
+    "age":"23"
+}
+print(httpx.post("http://localhost:8889/postDemo",json=a).json())
+b = {
+    "name":"daine",
+    "sex":"male"
+}
+print(httpx.post("http://localhost:8889/postSecond",data=b).json())
+print("11111")
+async def main():
+    async with httpx.AsyncClient() as client:
+        resp = await client.post('http://localhost:8889/postSecond',
+                                 data=b)
+        result = resp.json()
+        print(result)
+
+
+asyncio.run(main())
 
 
 

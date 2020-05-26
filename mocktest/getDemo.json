@@ -11,8 +11,10 @@
       }
     },
     "response": {
-      "text": "这是个json格式的get请求",
-      "status": "200"
+      "json": {
+        "message": "success",
+        "status": "1"
+      }
     }
   },
   {
@@ -86,8 +88,10 @@
       }
     },
     "response": {
-      "text": "我是daine",
-      "status": "200"
+      "json": {
+        "status": "1",
+        "msg": "success"
+      }
 
     }
 

@@ -1,71 +1,63 @@
-import time
+import gevent
+from gevent import monkey
 
-import requests,threading
+monkey.patch_all()
+
+from multiprocessing import Process
+import requests, time, httpx
+import datetime
+from others.test_kk_interfaces import KKInterface
 
 
-class Press():
+class ApiTest():
 
-    num = 0
-    ok = 0
+    def __init__(self):
 
+        self.gevent_num = 100  # 开启的协程数
+        self.task_num = 2  # 开启的进程数
+        self.req_url = "http:"
+        self.req_data = {
+            "coinid": ""
+      
+        }
+        self.headers = {
+            "Cookie": ""
+        }
 
-    def http_send(self):
-        # data = {
-        #     "name": "daine",
-        #     "age": "26"
-        # }
-        resp = requests.get("https://www.baidu.com").content.decode('utf-8')
-        print(resp)
-        if "百度一下" in resp:
-            self.ok += 1
+    def print_time(func):
+        def wrapper(self):
+            s_time = time.time()
+            print("开始时间：{}".format(datetime.datetime.now().strftime("%X")))
+            func(self)
+            e_time = time.time()
+            print("结束时间：{}".format(datetime.datetime.now().strftime("%X")))
+            print("总耗时：{}".format(e_time - s_time))
 
+        return wrapper
+
+    def send_req(self):
+        res = requests.post(url=self.req_url, json=self.req_data, headers=self.headers)
+        print(res.json())
+
+    def create_gevent(self):
+        g_list = []
+        for i in range(self.gevent_num):
+            g = gevent.spawn(KKInterface().getRewardRecord)
+            g_list.append(g)
+        gevent.joinall(g_list)
+
+    def create_task(self):
+
+        for i in range(self.task_num):
+            p = Process(target=self.create_gevent)
+            p.start()
+        p.join()
+
+    @print_time
     def run(self):
-        print(time.strftime("%Y-%m-%d : %H-%M-%S", time.localtime()))
-        while self.num < 500:
-
-            t = threading.Thread(target=self.http_send)
-            t.setDaemon(True)
-            t.start()
-            self.num+=1
-        t.join()
-        e_time = time.time()
-        print(self.ok)
-        print(time.strftime("%Y-%m-%d : %H-%M-%S", time.localtime()))
-
-    # def run_script(self):
-    #     i = 0
-    #     s_time = time.time()
-    #     while i < num:
-    #         t = threading.Thread(target=self.http_send)
-    #         t.setDaemon(True)
-    #         t.start()
-    #         i += 1
-    #     t.join()
-    #     e_time = time.time()
-    #     print(self.ok)
-    #     print(e_time - s_time)
-
+        self.create_gevent()
 
 
 if __name__ == '__main__':
-    Press().run()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
+    ApiTest().run()
 

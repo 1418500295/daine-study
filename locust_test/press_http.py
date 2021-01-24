@@ -31,6 +31,12 @@ class ApiTest():
             func(self)
             e_time = time.time()
             print("结束时间：{}".format(datetime.datetime.now().strftime("%X")))
+            print("最小响应时间：", min(KKInterfaces().req_time))
+            print("最大响应时间：", max(KKInterfaces().req_time))
+            print("平均响应时间：", numpy.mean(KKInterfaces().req_time))
+            print("成功的请求数：", len(KKInterfaces().success))
+            print("失败的请求数: ", ApiTest().gevent_num - len(KKInterfaces().success))
+            print("QPS: ", ApiTest().gevent_num / numpy.mean(KKInterfaces().req_time))
             print("总耗时：{}".format(e_time - s_time))
 
         return wrapper

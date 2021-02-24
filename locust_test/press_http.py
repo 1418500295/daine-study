@@ -1,7 +1,8 @@
 import gevent
 from gevent import monkey
 
-monkey.patch_all()
+# monkey.patch_all()
+monkey.patch_socket()
 
 from multiprocessing import Process
 import requests, time, httpx

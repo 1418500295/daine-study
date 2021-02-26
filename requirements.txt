@@ -1,4 +1,4 @@
-aiohttp==3.6.2
+aiohttp==3.7.4
 allure-pytest==2.8.12
 allure-python-commons==2.8.12
 altgraph==0.17

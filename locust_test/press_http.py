@@ -63,6 +63,55 @@ class ApiTest():
     @print_time
     def run(self):
         self.create_gevent()
+    
+    
+    
+    
+    
+    
+    
+    
+        def decorator(args="执行压测"):
+            def wrapper(funcName):
+                def func(self):
+                    sTime = time.time()
+                    s_time = time.strftime("%Y-%m-%d %H:%M:%M")
+                    funcName(self)
+                    eTime = time.time()
+                    e_time = time.strftime("%Y-%m-%d %H:%M:%M")
+                    max_respTime = max(self.resp_time)
+                    min_respTime = min(self.resp_time)
+                    fifty_percent_respTime = lambda: self.resp_time[int(len(self.resp_time) * 0.5) - 1]
+                    ninty_percent_respTime = lambda: self.resp_time[int(len(self.resp_time) * 0.9) - 1]
+                    print(self.resp_time)
+                    print(f'开始时间：{s_time}')
+                    print(f'结束时间：{e_time}')
+                    print(f'最大响应时间：{max_respTime}')
+                    print(f'最小响应时间：{min_respTime}')
+                    print(f'50%用户响应时间：{fifty_percent_respTime()}')
+                    print(f'90%用户响应时间：{ninty_percent_respTime()}')
+                    print("平均响应时间", numpy.mean(self.resp_time))
+                    print("总耗时: ", (eTime - sTime))
+                    print("QPS", self.thread_num / numpy.mean(self.resp_time))
+                    print(f'总请求数：{self.thread_num}')
+                    print("成功的请求数：", self.success_num)
+                    print("失败的请求数：", self.thread_num - self.success_num)
+            return func
+        return wrapper
+
+    @decorator()
+    def run(self):
+        req_list = []
+        for i in range(self.thread_num):
+            req_list.append(grequests.post(self.host+self.entrust_open_url,json=self.get_data(),
+                                           headers={"x-token":self.getToken(i)}))
+        res_list = grequests.map(req_list)
+        for one in res_list:
+            if isinstance(one.json(), dict):
+                print(f'响应结果：{one.json()}')
+                if one.json()['code'] == 200 and one.json()['data']['id']:
+                    self.success_num += 1
+            self.resp_time.append(one.elapsed.total_seconds())
 
 
 if __name__ == '__main__':

@@ -46,3 +46,9 @@ if __name__ == '__main__':
     # pytest.main(["test_01.py::TestAll::test2"])
     pytest.main(['-s'])
 
+    
+    
+    
+            base64编码后上传文件：  data = {'base64Data':'data:image/png;base64,'+base64.b64encode(open(image_path,'rb').read()).decode()}
+            files格式上传文件：   files = {'file':open(image_path,'rb')}
+

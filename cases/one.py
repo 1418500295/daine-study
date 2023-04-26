@@ -4,6 +4,33 @@ import pickle
 
 
 
+import openpyxl
+import xlrd, xlwt
+from xlutils.copy import copy
+
+file_path = os.path.dirname(os.path.abspath(__file__))
+base_path = os.path.join(file_path, 'demo.xlsx')
+print(base_path)
+book = xlrd.open_workbook(base_path)
+sheet = book.sheet_by_index(0)
+
+xfile = openpyxl.load_workbook(base_path)
+sheet1 = xfile.get_sheet_by_name("Sheet1")
+
+for i in range(sheet.nrows):
+    for j in range(sheet.ncols):
+        if i == 0:
+            continue
+        else:
+            value = sheet.cell_value(i, j)
+            print(value)
+            sheet1["D"+str(i+1)] = 2
+xfile.save(base_path)
+
+
+
+
+
 # def done(level):
 #     def decorator(one):
 #         @wraps(one)

@@ -69,9 +69,9 @@ class JiraTool:
         self.server = 'http://jira'
         self.basic_auth = ('glen', '123')
         self.token = '65:AAFQgPHsohM'
-        # self.chat_id = 6369282875  #机器人id
-        # self.chat_id = -730235451  #工作组群组id
-        self.chat_id = -960104280
+        # self.chat_id = 635  #机器人id
+        # self.chat_id = -751  #工作组群组id
+        self.chat_id = -980
         self.test_user = ['ro','ye','mac','mio']
         self.android_list = ['esid','aon','ter_id','ndr','jn']
         self.ios_list = ['fl','jin_ios','is','gin']

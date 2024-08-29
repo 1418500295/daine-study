@@ -91,6 +91,21 @@ async def start():
                                                  + "服务端:" + "\n" + "".join(fwd_list) + "\n"
                                                  + "pc端:" + "\n" + "".join(pc_list), parse_mode="HTML")
 
+import matplotlib.pyplot as plt
+
+sizes = [len(android_list), len(ios_list), len(otc_list), len(fwd_list),len(pc_list)]
+
+plt.rcParams['font.family'] = ['SimHei']  # 指定中文字体为黑体
+labels = [an, ios, otc, fwd,pc]
+plt.bar(x=labels,height=sizes)
+for a,b in zip(labels, sizes):
+    plt.text(a,b,
+             b,
+             ha='center',
+             va='bottom',
+            )
+plt.title("各端bug数量")
+plt.savefig("./bug.png")
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(start())

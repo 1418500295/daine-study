@@ -90,7 +90,9 @@ async def start():
                                                  + "otc后台:" + "\n" + "".join(otc_list) + "\n"
                                                  + "服务端:" + "\n" + "".join(fwd_list) + "\n"
                                                  + "pc端:" + "\n" + "".join(pc_list), parse_mode="HTML")
-
+async def png():
+    await bot.send_photo(chat_id=chat_id, photo=open("./bug.png","rb"))
+    
 import matplotlib.pyplot as plt
 
 sizes = [len(android_list), len(ios_list), len(otc_list), len(fwd_list),len(pc_list)]

@@ -41,6 +41,8 @@ finally:
     plt.plot(x, y1, 'o-', color='red', label='cpu')
     plt.xlabel("时间")
     plt.ylabel("cpu使用率")
+    plt.grid(linestyle='--')  设置网格线
+
     # for a, b in zip(x, y1):
     #     plt.text(a, b+0.1,b, ha='center', va='bottom', fontsize=8)#y_axis_data1加标签数据
     plt.savefig("./cpu.png")

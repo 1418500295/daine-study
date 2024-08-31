@@ -1,7 +1,7 @@
 import psutil
 import time
 import datetime
-
+interval = 5
 cpu = []
 memory = []
 io = []
@@ -23,25 +23,29 @@ try:
         # 隔多久采集一次
         time.sleep(0)
         e = time.time()
-        if e - s > 20:
+        if e - s > 30:
             break
-
 except Exception as e:
     print(e)
 finally:
     import matplotlib.pyplot as plt
+    from matplotlib.widgets import Slider
+    import matplotlib.ticker as ticker
 
-    plt.rcParams['font.family'] = 'SimHei'
     x = times
     y1 = cpu
     y2 = memory
     y3 = io
-    plt.figure(figsize=(10, 7))
+    plt.rcParams['font.family'] = 'SimHei'
+
+    fig = plt.figure(figsize=(20, 7))
+    ax = fig.add_subplot(111)
     plt.xticks(rotation=45, fontsize=8)
-    plt.plot(x, y1, 'o-', color='red', label='cpu')
-    plt.xlabel("时间")
-    plt.ylabel("cpu使用率")
-    plt.grid(linestyle='--')  设置网格线
+    plt.plot(x, y1, color='red', label='cpu')
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(interval))
+    plt.ylabel("cpu使用率 (%)")
+    plt.legend(loc='upper right')
+    plt.grid(linestyle='--')
 
     # for a, b in zip(x, y1):
     #     plt.text(a, b+0.1,b, ha='center', va='bottom', fontsize=8)#y_axis_data1加标签数据
@@ -49,27 +53,44 @@ finally:
     plt.close()
     # plt.show()
 
-    plt.figure(figsize=(10, 7))
+
+
+    fig = plt.figure(figsize=(20, 7))
+    ax = fig.add_subplot(111)
     plt.xticks(rotation=45, fontsize=8)
-    plt.plot(x, y2, 'o-', color='green', label='memory')
+    plt.plot(x, y2, color='green', label='内存')
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(interval))
     plt.xlabel("时间")
-    plt.ylabel("内存使用率")
+    plt.ylabel("内存使用率 (%)")
+    plt.legend(loc='upper right')
+    plt.grid(linestyle='--')
+
+
     # for a, b in zip(x, y2):
     #     plt.text(a, b+0.1,b, ha='center', va='bottom', fontsize=8)#y_axis_data1加标签数据
 
     plt.savefig("./内存.png")
     plt.close()
 
-    plt.figure(figsize=(10, 7))
+
+    fig = plt.figure(figsize=(20, 7))
+    ax = fig.add_subplot(111)
     plt.xticks(rotation=45, fontsize=8)
-    plt.plot(x, y3, 'o-', color='blue', label='磁盘')
+    plt.plot(x, y3, color='blue', label='磁盘')
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(interval))
     plt.xlabel("时间")
-    plt.ylabel("磁盘使用率")
+    plt.ylabel("磁盘使用率 (%)")
+    plt.legend(loc='upper right')
+    plt.grid(linestyle='--')
+
+
+
     # for a, b in zip(x, y3):
     #     plt.text(a, b+0.1,b, ha='center', va='bottom', fontsize=8)#y_axis_data1加标签数据
 
     plt.savefig("./磁盘.png")
     plt.close()
+
 
 
 

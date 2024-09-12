@@ -23,6 +23,10 @@ capabilities_options = UiAutomator2Options().load_capabilities(capabilities)
 
 driver = webdriver.Remote(command_executor='http://localhost:4723/wd/hub', options=capabilities_options)
 time.sleep(5)
+# 测试过程录屏
+cmd = 'scrcpy --no-display --record demo.mp4'
+p = subprocess.Popen(cmd,shell=True)
+
 ele = WebDriverWait(driver, 10, 0.5).until(
     EC.presence_of_element_located((By.ID, 'id/sure')))
 ele.click()
@@ -182,3 +186,5 @@ ele = WebDriverWait(driver, 10, 0.5).until(EC.presence_of_element_located(
     (By.XPATH, '/el"]')))
 ele.click()
 # driver.find_element(By.XPATH,'ancel"]').click()
+#结束录屏
+os.kill(p.pid,signal.CTRL_C_EVENT)

@@ -98,6 +98,7 @@ for i in otc_list:
         otc_houduan.append(str(y) + ". <a" + str(i).split("<a")[1])
         y += 1
 # chat_id = 7170
+# await bot.send_message(chat_id=chat_id, text="""<code>是否是刚好</code>""",parse_mode="HTML")
 async def start0():
     await bot.send_message(chat_id=chat_id, text=f"==================={keyword}功能待解决BUG:===================\n")
 async def start(mode="安卓", bug_l=[]):

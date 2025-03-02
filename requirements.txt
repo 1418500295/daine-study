@@ -52,7 +52,7 @@ multidict==4.7.5
 mysql-connector-python==8.0.19
 Naked==0.1.31
 packaging==20.0
-paramiko==2.7.1
+paramiko==2.10.1
 parse==1.15.0
 parse-type==0.5.2
 pbr==5.4.4

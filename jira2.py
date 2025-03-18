@@ -29,12 +29,12 @@ android_content_list = []
 
 fwd_content_list = []
 link = 'http://jira.esccall.com/browse/'
-bot = telegram.Bot(token="6903033642:AAHJU4nxGHeW_96pYavCqe2UsQKJMqv7jh4")
-android_bug_jql = f"project = COIN68 AND issuetype = Bug AND status in (处理中, 待处理) AND Summary ~ '\"【安卓】\"' AND Summary !~ '\"【otc】\"' AND Summary !~ '\"【服务端】\"' AND Summary !~ '\"【ios】\"' AND Summary ~ '\"交易区\"' order by created DESC"
-ios_bug_jql = f"project = COIN68 AND issuetype = Bug AND status in (处理中, 待处理)   AND Summary ~ '\"【ios】\"' AND Summary !~ '\"【otc】\"' AND Summary !~ '\"【服务端】\"' AND Summary !~ '\"【安卓】\"' AND Summary ~ '\"交易区\"'  order by created DESC"
-otc_bug_jql = f"project = COIN68 AND issuetype = Bug AND status in (处理中, 待处理)  AND Summary ~ '\"【otc】\"' AND Summary ~ '\"交易区\"' AND Summary !~ '\"【服务端】\"' AND Summary !~ '\"【安卓】\"' AND Summary !~ '\"【ios】\"' order by created DESC"
-fwd_bug_jql = f"project = COIN68 AND issuetype = Bug AND status in (处理中, 待处理)  AND Summary !~ '\"【安卓】\"' AND Summary !~ '\"【ios】\"' AND Summary ~ '\"交易区\"' AND Summary !~ '\"【otc】\"' order by created DESC"
-# fwd_bug_jql1 = f"project = COIN68 AND issuetype = Bug AND status in ('Pending Test', 待测试)  AND Summary ~ '服务升级' order by created DESC"
+bot = telegram.Bot(token=":")
+android_bug_jql = f"project =  AND issuetype = Bug AND status in (处理中, 待处理) AND Summary ~ '\"【安卓】\"' AND Summary !~ '\"【otc】\"' AND Summary !~ '\"【服务端】\"' AND Summary !~ '\"【ios】\"' AND Summary ~ '\"\"' order by created DESC"
+ios_bug_jql = f"project =  AND issuetype = Bug AND status in (处理中, 待处理)   AND Summary ~ '\"【ios】\"' AND Summary !~ '\"【otc】\"' AND Summary !~ '\"【服务端】\"' AND Summary !~ '\"【安卓】\"' AND Summary ~ '\"\"'  order by created DESC"
+otc_bug_jql = f"project =  AND issuetype = Bug AND status in (处理中, 待处理)  AND Summary ~ '\"【otc】\"' AND Summary ~ '\"\"' AND Summary !~ '\"【服务端】\"' AND Summary !~ '\"【安卓】\"' AND Summary !~ '\"【ios】\"' order by created DESC"
+fwd_bug_jql = f"project =  AND issuetype = Bug AND status in (处理中, 待处理)  AND Summary !~ '\"【安卓】\"' AND Summary !~ '\"【ios】\"' AND Summary ~ '\"\"' AND Summary !~ '\"【otc】\"' order by created DESC"
+# fwd_bug_jql1 = f"project =  AND issuetype = Bug AND status in ('Pending Test', 待测试)  AND Summary ~ '服务升级' order by created DESC"
 
 def get_jira_bug(bug_jql, amount, summary_list):
     for u in jira.search_issues(bug_jql, maxResults=-1):

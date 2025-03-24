@@ -28,7 +28,7 @@ CONFIG = {
 # 初始化Jira客户端
 JIRA_SERVER = 'http:'
 JIRA_USER = ''
-JIRA_PASSWORD = '1qaz2wsx'
+JIRA_PASSWORD = ''
 TELEGRAM_TOKEN = ':'
 TELEGRAM_CHAT_ID = '-'
 # TELEGRAM_CHAT_ID = ''

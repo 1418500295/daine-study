@@ -55,6 +55,8 @@ class ServerMonitor:
     def generate_chart(self, df):
         """生成监控图表"""
         plt.figure(figsize=(14, 10))
+        plt.rcParams['font.family'] = ['SimHei']  # 指定中文字体为黑体
+
 
         # 转换时间格式
         df['时间'] = pd.to_datetime(df['时间'])
